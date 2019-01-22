@@ -5,9 +5,9 @@
 # Site
 title: lwj's blog
 subtitle:
-description:
+description: 个人博客
 keywords:
-author: liuwj
+author: wenjun liu
 language:
 timezone:
 
@@ -35,7 +35,7 @@ titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:

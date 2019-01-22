@@ -1,9 +1,12 @@
 ---
 title: git 操作命令
 date: 2019-01-22 14:50:17
+updated: 2019-01-22 23:12:59
 tags: 操作命令
-comments: true
+categories: command
 ---
+
+![你想要输入的替代文字](git-command/git.jpg)
 
 ## Terminal 操作命令
 1. dir 展示当前文件夹下的所有文件
