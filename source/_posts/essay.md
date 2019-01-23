@@ -58,3 +58,5 @@ categories: js
 	var a = 2; 
 	b = --a; // a = 1, b = 1
 ```
+
+>删除对象中的属性 `delete 对象.属性`
