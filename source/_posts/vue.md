@@ -86,14 +86,139 @@ data: {
 
 ```
 
+## 对porp进行双向绑定
+1. 在父组件使用sync绑定一个值 `:modelVal.sync="tree.val1"`
+2. 在子组件data中定义一个realVal,`realVal:this.modelVal`
+3. 子组件绑定realVal
+4. 使用watch监听realVal
+```
+realVal(newVal,oldVal){
+    this.$emit("update:modelVal",newVal)
+}
+```
+## prop
 
+1. 校验
+```
+propF: {
+      validator: function (value) {
+        // 这个值必须匹配下列字符串中的一个
+        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+      }
+    }
+```
+2. 给对象或数组赋默认值
+```
+propE: {
+      type: Object,
+      // 对象或数组默认值必须从一个工厂函数获取
+      default: function () {
+        return { message: 'hello' }
+      }
+    }
+```
 
+## 作用于插槽的使用方法
 
+>写组件的时候要多用插槽slot
 
+>在自组件里面使用`slot`并在`slot`标签上绑定属性，在父组件中使用`slot-scope`可以获取子组件上`slot`绑定的数据
 
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <child :list="list">
+                <template slot-scope="item">
+                    <div v-if="item.item.id===1">{{item.item.id}} </div>
+                    <div v-else>{{item.item.name}} </div>
+                </template>
+        </child>      
+    </div>
+    <script>
+        Vue.component('child',{
+            props:['list'],
+            template:`
+                <div>
+                    <ul>
+                        <li v-for="(item,index) in list" :key="index">
+                            <slot :item="item">
+                            
+                            </slot>
+                        </li>
+                    </ul>
+                </div>
+            `
+        })
+        var vm = new Vue({
+            el: '#example',
+            data: {
+                list:[
+                    {id:1,name:11},
+                    {id:2,name:22},
+                    {id:3,name:33},
+                    {id:4,name:44}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
 
+```
 
+>`this` 或者 `this.$root`打印的都是当前vue的实例
 
+## this.$nextTick
+- 在vue中DOM的更新是异步的
+- 在Vue生命周期的created()钩子函数进行的DOM操作一定要放在Vue.nextTick()的回调函数中
+- 在数据变化后要执行的某个操作，而这个操作需要使用随数据改变而改变的DOM结构的时候，这个操作都应该放进Vue.nextTick()的回调函数中。
+
+模板
+```
+<div class="app">
+  <div ref="msgDiv">{{msg}}</div>
+  <div v-if="msg1">Message got outside $nextTick: {{msg1}}</div>
+  <div v-if="msg2">Message got inside $nextTick: {{msg2}}</div>
+  <div v-if="msg3">Message got outside $nextTick: {{msg3}}</div>
+  <button @click="changeMsg">
+    Change the Message
+  </button>
+</div>
+```
+vue实例
+```
+new Vue({
+  el: '.app',
+  data: {
+    msg: 'Hello Vue.',
+    msg1: '',
+    msg2: '',
+    msg3: ''
+  },
+  methods: {
+    changeMsg() {
+      this.msg = "Hello world."
+      this.msg1 = this.$refs.msgDiv.innerHTML
+      this.$nextTick(() => {
+        this.msg2 = this.$refs.msgDiv.innerHTML
+      })
+      this.msg3 = this.$refs.msgDiv.innerHTML
+    }
+  }
+})
+```
+点击前
+![你想要输入的替代文字](vue/before.png)
+
+点击后
+![你想要输入的替代文字](vue/after.png)
 
 
 
