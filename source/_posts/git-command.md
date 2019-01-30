@@ -3,14 +3,14 @@ title: git 操作命令
 date: 2019-01-22 14:50:17
 updated: 2019-01-22 23:12:59
 tags: 操作命令
-categories: command
+categories: 操作命令
 ---
 
 ![你想要输入的替代文字](git-command/git.jpg)
 
 ## Terminal 操作命令
 1. dir 展示当前文件夹下的所有文件
-2. cls 清空  不然就 clear / reset
+2. cls/clear/reset  清空控制台内容
 3. path 查看当前运行环境的环境变量
 4. mkdir 创建文件夹
 
@@ -21,10 +21,10 @@ categories: command
 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
 Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。
 
-### 看当前目录下所有可见文件
->ls   或者  ls -l 查看详细属性
+### 查看当前目录下所有可见文件
+>ls   或者  ls -l 查看文件的详细属性
 
-### 查看文件具体内容
+### 查看文件内容
 >cat  fileName
 
 ### 修改文件
@@ -37,7 +37,7 @@ Git的版本库里存了很多东西，其中最重要的就是称为stage（或
 2. git log  --pretty=oneline --abbrev-commit
 3. https://blog.csdn.net/helloxiaozhe/article/details/80563427  详细的提交历史
 
-### 记录自己的所有git 命令
+### 记录用户的所有git命令
 >git reflog
 
 ### 创建版本库  
@@ -56,7 +56,7 @@ Git的版本库里存了很多东西，其中最重要的就是称为stage（或
 ### 标识工作区的文件
 >git status 
 
-### 查看工作区和版本库里面最新版本的区别
+### 查看工作区和版本库里面文件的差异
 >git diff HEAD --  fileName
 
 ### 撤销工作区的修改内容
@@ -74,7 +74,7 @@ Git的版本库里存了很多东西，其中最重要的就是称为stage（或
 ### 删除版本库文件夹
 >git rm -r folder  
 
-### 将本地文件推送到github上
+### 将本地文件推送到git上
 1. git remote add origin git仓库地址
 2. git push -u origin master（第一次得写全） 以后可以直接git push 
 3. fatal: Could not read from remote repository.的解决办法
@@ -109,19 +109,19 @@ Git的版本库里存了很多东西，其中最重要的就是称为stage（或
 1. git remote  仓库名 默认origin
 2. git remote -v  详细信息
  
-### 可以给当前分支最新代码打上标签
+### 给最近的commit记录打上标签（即版本号）
 >git tag 标签  
 
-### 给只定的提交记录打上标签
+### 给指定的commit记录打上版本号
 >git tag id
 
-### 展示提交的具体内容
+### 展示版本号的具体内容
 >git show 标签  
 
-### 给标签写上具体的描述
+### 版本号具体的描述
 >git tag -a  标签  -m ""  commit id
 
-### 推送本地标签
+### 推送本地版本号
 1. git push origin --tags
 2. git push origin v1.0
 

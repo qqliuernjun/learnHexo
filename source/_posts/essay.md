@@ -6,7 +6,7 @@ tags: 零散知识点
 categories: js
 ---
 
-## npm中的qs
+## node qs模块
 - qs.stringify()将对象 序列化成URL的形式，以&进行拼接
 - qs.parse()将URL解析成对象的形式
 
@@ -60,3 +60,7 @@ categories: js
 ```
 
 >删除对象中的属性 `delete 对象.属性`
+
+## js转化大小写
+1. toUpperCase()
+2. toLowerCase()
